@@ -29,6 +29,7 @@ RAINBOW_COLORS = [
   HUES['violet'],
 ]
 
+# Window topology of Hue bulb IDs. Subject to change.
 WINDOWS_BY_ID = [
   [11], # Window 1/R
   [10], # Window 2/O
@@ -39,15 +40,16 @@ WINDOWS_BY_ID = [
   [16, 18], # Window 7/V
 ]
 
+API_KEY_FILE = 'secret_api_key'
 
 api = HueApi()
 
 # Create new API key:
 #api.create_new_user('bridge ip address')
-#api.save_api_key('foo.key')
+#api.save_api_key(API_KEY_FILE)
 
 # Load existing API key:
-api.load_existing('foo.key')
+api.load_existing(API_KEY_FILE)
 
 print('fetching lights...')
 lights = api.fetch_lights()
@@ -66,5 +68,5 @@ while True:
             light.set_color(hue, MAX_SATURATION)
 
     i += 1
-    time.sleep(1)
+    #time.sleep(1)
 
